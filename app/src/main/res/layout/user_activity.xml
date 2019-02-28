@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="br.com.omniatechnology.recyclerviewmvvm.UserViewModel"
+        />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:text="@{viewModel.user.nome}"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:afterTextChanged="@{(editable) -> viewModel.afterNomeTextChanged(editable)}"
+            app:layout_constraintVertical_bias="0.4"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:afterTextChanged="@{(editable) -> viewModel.afterEmailTextChanged(editable)}"
+            android:layout_marginBottom="10dp"
+            android:text="@{viewModel.user.email}"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintRight_toRightOf="@id/editText"
+            app:layout_constraintTop_toBottomOf="@id/editText" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:onClick="@{() -> viewModel.save()}"
+            toastMessage="@{viewModel.toastMessage}"
+            isSaveSuccess="@{viewModel.isSaveSuccess}"
+            android:paddingTop="20dp"
+            android:text="SALVAR"
+            app:layout_constraintLeft_toLeftOf="@id/editText2"
+            app:layout_constraintRight_toRightOf="@id/editText2"
+            app:layout_constraintTop_toBottomOf="@id/editText2"
+
+            />
+    </android.support.constraint.ConstraintLayout>
+
+
+</layout>

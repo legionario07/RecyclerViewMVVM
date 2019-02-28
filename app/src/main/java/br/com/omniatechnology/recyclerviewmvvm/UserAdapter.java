@@ -1,9 +1,11 @@
 package br.com.omniatechnology.recyclerviewmvvm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     private List<User> users;
     private Context context;
+
 
     public UserAdapter(Context context, List<User> users) {
         this.users = users;
@@ -32,7 +35,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 R.layout.item_users,
                 viewGroup, false
         );
-
 
 
         return new UserViewHolder(itemUsersBinding);
@@ -52,14 +54,28 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return users.size();
     }
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder{
+
+    public static class UserViewHolder extends RecyclerView.ViewHolder {
 
         private ItemUsersBinding itemUsersBinding;
-        public UserViewHolder(@NonNull ItemUsersBinding itemView) {
+        private Context context;
+
+        public UserViewHolder(@NonNull final ItemUsersBinding itemView) {
             super(itemView.getRoot());
             this.itemUsersBinding = itemView;
-        }
-    }
+            this.context = itemView.getRoot().getContext();
 
+            itemUsersBinding.ll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, UserActivity.class);
+                    intent.putExtra("user", itemUsersBinding.getUser());
+                    context.startActivity(intent);
+                }
+            });
+        }
+
+
+    }
 
 }

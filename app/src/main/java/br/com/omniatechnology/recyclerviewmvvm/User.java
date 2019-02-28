@@ -1,6 +1,8 @@
 package br.com.omniatechnology.recyclerviewmvvm;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String nome;
     private String email;

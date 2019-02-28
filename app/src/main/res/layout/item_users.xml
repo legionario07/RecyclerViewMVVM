@@ -6,6 +6,12 @@
 
 
     <data>
+
+        <variable
+            name="userViewModel"
+            type="br.com.omniatechnology.recyclerviewmvvm.UserViewModel"/>
+
+
         <variable
             name="user"
             type="br.com.omniatechnology.recyclerviewmvvm.User"/>
@@ -13,6 +19,7 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/ll"
         android:orientation="vertical"
         android:padding="5dp"
         android:gravity="center"
